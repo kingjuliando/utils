@@ -1,0 +1,103 @@
+#!/bin/bash
+
+#                            muttindexer
+
+# Only deals with folder names without 
+# spaces. Also only goes to one level
+# of folder depth; this was all I needed
+# so didn't add any further depth.
+
+# Writes to the File 
+  writeToFile() {
+    printf "macro index,pager \cm\c%s\"<copy-message>?c" "${Shortcut}"             >> "$Outputfile"
+  # Backspace x42 
+    for i in {1..42} ; do
+      printf "<backspace>"                                                         >> "$Outputfile"
+    done
+    if [[ ${InboxLocation} == *"gmail"* ]] ; then
+      printf "imaps://imap.gmail.com:993/${Folder}<enter><enter>ydd\" \
+            \"Move Item to \'${Folder}\'. Added Automatically by MuttIndexer \"\n" >> "$Outputfile"
+    elif [[ ${InboxLocation} == *"outlook"* ]] ; then
+      printf "imaps://imap-mail.outlook.com:993/${Folder}<enter><enter>ydd\" \
+            \"Move Item to \'${Folder}\'. Added Automatically by MuttIndexer \"\n" >> "$Outputfile"
+    else 
+      printf "\n\nFATAL ERROR, could not work out the imap account config."
+    fi
+  }
+
+# Specify the Output file and Find the Mailbox(es - further dev)
+  cd ~/.mutt || exit
+  inboxLocations=($(find / -xdev 2>/dev/null -name "Inbox"))
+
+
+  # Title 
+    echo ""
+    echo "Automatically create shortcuts to move mail between folders in neomutt! \(Only working with Outlook and Gmail, currently\)"
+    echo ""
+
+# Loop Through All Mailboxes
+  counter=0
+  for InboxLocation in "${inboxLocations[@]}"; do
+
+  # Get Mailbox
+    cd "$InboxLocation" || exit
+    cd .. || exit
+    # We're  in  the 
+    # right location
+
+  # Specify Output File - NOT THIS SIMPLE
+    counter=$((counter+1))
+    Outputfile="${HOME}/.mutt/bindings-acct-${counter}.mutt"
+   
+  # Test For Multiple Mailboxes
+  # if [ ${#inboxLocations[@]}>1 ] ; then
+    if [[ ${#inboxLocations[@]} -gt 1 ]] ; then 
+      printf "\n\n\n\n"
+      echo "Multiple Mailboxes Found: "
+    else
+      printf "\n\n\n\n"
+      echo "One Mailbox Found To Configure: "
+    fi
+    echo "$PWD"
+    echo ""
+
+  # Loop through folder
+    for folder in * ; do
+
+      if [[ -d "${folder}" ]]; then
+
+        echo Assign a shortcut to "${folder}" - leave blank to skip
+        read -r Shortcut
+        if [[ -z $Shortcut ]] ; then 
+        # Skip
+          echo Skip 
+          echo ""
+        else 
+        # Call Write To File
+          Folder="${folder}"
+          writeToFile
+          echo ""
+        fi
+
+        # cd into nested folder
+        cd "$folder" || exit
+        for folder2 in * ; do
+          if [[ -d "${folder2}" ]] ; then
+            echo Assign a shortcut to "${folder}"/"${folder2}" - leave blank to skip
+            read -r Shortcut
+            if [[ -z "$Shortcut" ]] ; then 
+            # Skip
+              echo Skip 
+              echo ""
+            else 
+            # Call Write To File
+              Folder="${folder}/${folder2}"
+              writeToFile
+              echo ""
+            fi
+          fi
+        done
+        cd ..
+      fi
+    done
+  done

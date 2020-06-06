@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Title:	git-swap
+# By: 		OfficialKingJulian
+# Tag Added:	02-02-2020
+# Description:  Used to swap between my two GitHub acounts
+
+# Just ported from github.com
+# /OfficialKingJulian/dotbatch 
+# in reality
+
+function useage {
+  echo Accepts arguments of \'personal\' or \'pro\'
+}
+
+if [[ ${1} == "personal" ]] ; then 
+  git config --global user.name  "OfficialKingJulian"
+  git config --global user.email official@kingjulian.xyz 
+  echo You are now using account OfficialKingJulian
+elif [[ ${1} == "pro" ]] ; then 
+  git config --global user.name  "JulianOrchard"
+  git config --global user.email contact@julians.email
+  echo You are now using account JulianOrchard
+else 
+  useage
+fi

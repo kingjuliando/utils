@@ -1,0 +1,57 @@
+#!/usr/bin/env perl6 
+
+#                                    Perl6 Note Taker:
+#
+#   An extremely simple app that allows you to quickly 
+#    and easily create notes and remove them if needed
+
+
+sub MAIN($note) {
+
+  # Notes Dir
+    my $notedir  = "$*HOME/Documents/notes";  
+
+  # This gets the date:
+    my $dt = q:x/date +%Y-%m-%d/.trim; 
+
+  # This gets the time: 
+    my $time = q:x/date +%H:%M:%S/.trim;
+
+
+  if $note[*-1] eq "add" {
+
+  # Note Name
+    my $notename =  prompt "Note Title: ";
+    
+  # Checking it all exists
+    if not $notedir.IO ~~ :d {
+      mkdir $notedir;  say "Created Folder ~/Documents/notes";
+    } 
+    if "$notedir/$notename.note".IO.e {
+      say "Uh-oh, a note of that name already exists";
+      # EVENTUALLY:
+      # Show the DIR at this point
+      # and get them to try again 
+      # or cancel
+        # say dir $notedir;
+    }
+
+  # Create the note
+    my $note = open "$notedir/$notename.note", :w;
+    $note.print("Created by Perl6 Note Taker; \nDate: $dt | Time: $time \n\n");
+    $note.close;
+
+  # Call bash script to run vim
+    my $bash = q:x/vim "$notedir\/$notename.note"/;
+    say $bash; 
+
+  } elsif $note[0] eq "rm" {
+    # List Notes
+      say "RM feature coming soon";
+  } else {
+    # Usage
+      say "\n Usage";
+      say "     add          Create a new note.";
+      say "     rm     Remove an existing note.\n";
+  }
+}

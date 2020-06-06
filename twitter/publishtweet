@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Title:	publishtweet
+# By: 		OfficialKingJulian
+# Tag Added:	02-02-2020
+# Description:  Called by cron to publish scheduled tweets
+
+# Publishes Scheduled Tweet 
+  thedate=$(date +'%Y-%m-%d')
+  cd ${HOME}/twitter/scheduled 
+  thefile=$(find . -name "*${thedate}*")
+  /usr/local/bin/twitter set $(cat ${thefile})
+
+# Remove The Right Tweet
+  hours=$(date +%H)
+  days=$(date +%d)
+  mons=$(date +%m)
+  ( crontab -l | grep -v -F " ${hours} ${days} ${mons} * ${HOME}/dotfiles/tools/twitter/" ) | crontab -
+
+# Delete The File Too!
+  rm ${thefile}

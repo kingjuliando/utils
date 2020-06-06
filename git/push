@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Title:	push
+# By: 		OfficialKingJulian
+# Tag Added:	02-02-2020
+# Description:  Very useful command to commit and push changes quickly
+
+# Add
+  git add .
+
+# Regex For Flags
+  reg="^-.*"
+
+# Get Commit Message
+  if [[ ${1} =~ ${reg} ]] ; then
+    commitmessage="${@:2}"
+  elif [[ ${1} = "" ]] ; then
+    echo 'Enter the commit message:'
+    read commitmessage
+  else 
+    commitmessage="${@:1}"
+  fi
+  git commit -m "$commitmessage"
+
+# Get Current Branch
+  branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
+
+# Push It
+  if [[ ${1} =~ ${reg} ]] ; then
+    git push ${1} origin ${branch}
+  else 
+    git push origin ${branch}
+  fi

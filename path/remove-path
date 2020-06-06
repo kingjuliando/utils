@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Title:	remove-path
+# By: 		OfficialKingJulian
+# Tag Added:	02-02-2020
+# Description:  FISH; lists paths and allows you to remove one
+
+show-path
+
+# Get number of paths
+  nopaths=$(echo `show-path |& tail -1` | cut -d' ' -f1)
+
+  while true; do
+    echo Please enter the number of the path you want to remove \(Ctrl-C to cancel\): 
+    read pathno
+    if [ ${nopaths} -ge ${pathno} ] && [ ${pathno} -ge 1 ]; then
+      break
+    else 
+      echo
+      echo You must enter a number, it must be a valid number!
+      echo
+      show-path
+    fi
+  done
+
+# Remove the path
+  fish-remove-path ${pathno}
+

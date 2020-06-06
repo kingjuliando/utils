@@ -1,0 +1,30 @@
+#!/bin/bash
+
+  qual=$(annie -i ${1} | awk '/Quality:/ && !/Streams:/' | sed -e 's/Quality:/~/g;s/        //g')
+  code=$(annie -i ${1} | awk '/]  -------/' | sed -e 's/ //g;s/\[//g;s/-//g')
+  clist=(${code//]/ })
+  counter=0
+  ARRAY=()
+  echo "Please select a size of the video to download..."
+  while IFS='~' read -ra ADDR; do
+    counter=$((counter+1))
+    dumbfix=0
+    for i in "${ADDR[@]}"; do
+      if [[ $dumbfix = 1 ]] ; then 
+        echo "  $counter: $i - ${clist[$counter]}" 
+      fi
+      dumbfix=$((dumbfix+1))
+    done
+  done<<<$listqual
+
+  read num
+  if [ "$num" -gt "$counter" ] ; then 
+    echo "Invalid choice!" && exit 0 ; fi
+
+
+  for i in "${ADDR[@]}"
+  do
+    if [[ $i = $num ]] ; then
+      echo "$i"
+    fi
+  done
