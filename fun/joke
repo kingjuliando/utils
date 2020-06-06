@@ -1,7 +1,9 @@
 #!/bin/bash
 
-#   BJG ~ Bad Joke Generator
-
+# Title:	joke
+# By: 		kingjuliando
+# Tag Added:	06-06-2020
+# Description:  Returns a random joke from the array
 
 jokelist=(
   "Why do ghosts like to ride in elevators? Because it raises their spirits!"

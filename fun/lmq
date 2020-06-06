@@ -1,7 +1,9 @@
 #!/bin/bash
 
-#   LMQ ~ Lucius Malfoy Quotes
-
+# Title:	lmq
+# By: 		kingjuliando
+# Tag Added:	06-06-2020
+# Description:  Returns a random Lucius Malfoy quote
 
 jokelist=(
 "Did you actually believe, or are you truly naive enough to think that children stood a chance against us? I&#x2019;ll make this simple for you, Potter. Give me the prophecy now, or watch your friends die."

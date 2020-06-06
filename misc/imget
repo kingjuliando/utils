@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Title:	imget
+# By: 		kingjuliando
+# Tag Added:	06-06-2020
+# Description:  Quickly and easily download whole imgur albums from their URL
+
 function cleanend() {
   rm ${temp} ${tem2}
   exit 0 

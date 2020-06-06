@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Title: 	desc 
-# By: 		OfficialKingJulian
+# By: 		kindjuliando
 # Tag Added: 	02/02/2020
 # Description: 	Adds file descriptions to scripts I write.
 
@@ -15,7 +15,7 @@ if [[ -f ${filename} ]] ; then
   echo "#!/bin/bash" > ${filenamecp}
   echo "" >> ${filenamecp}
   echo "# Title:	${filename}" >> ${filenamecp}
-  echo "# By: 		OfficialKingJulian" >> ${filenamecp}
+  echo "# By: 		kingjuliando" >> ${filenamecp}
   echo "# Tag Added:	${date}" >> ${filenamecp}
 
 # Get file description

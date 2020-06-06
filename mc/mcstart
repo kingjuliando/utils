@@ -1,3 +1,9 @@
 #!/bin/bash
+
+# Title:	mcstart
+# By: 		kingjuliando
+# Tag Added:	06-06-2020
+# Description:  A script to start java Minecraft server in a screen
+
 cd /home/julian/mc1 
 sudo screen -d -m -S mc1 bash -c 'sudo java -Xmx1024M -Xms1024M -jar ./*.jar nogui'

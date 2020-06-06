@@ -1,8 +1,0 @@
-#!/bin/bash
-
-stat=$(screen -list | grep protonmailbridge)
-if [[ ! ${stat} = "" ]] ; then 
-  printf "" 
-else 
-  printf ""
-fi

@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Title:	dl
+# By: 		kingjuliando
+# Tag Added:	06-06-2020
+# Description:  Unfinished little cl wrapper for annie
+
   qual=$(annie -i ${1} | awk '/Quality:/ && !/Streams:/' | sed -e 's/Quality:/~/g;s/        //g')
   code=$(annie -i ${1} | awk '/]  -------/' | sed -e 's/ //g;s/\[//g;s/-//g')
   clist=(${code//]/ })

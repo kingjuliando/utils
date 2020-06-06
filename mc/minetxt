@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Title:	minetxt
+# By: 		kingjuliando
+# Tag Added:	06-06-2020
+# Description:  A quick and messy script to send server messages to Facebook groupchat
+
 # Get Difference of Text and send it to screen to send to Fb
   CONTENT="$(comm -23 /home/julian/minecraft/logs/latest.log /home/julian/minecraft/logs/scndlatest.log)"
   TEXT="$(echo ${CONTENT})" 

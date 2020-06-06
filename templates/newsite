@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# Either copies the site quickstarter into a folder,
-# or copies the template into a folder.
-
-# I might add more if I need to at some point.
+# Title:	newsite
+# By: 		kingjuliando
+# Tag Added:	06-06-2020
+# Description:  Quickly adds site underconstruction to folder
 
 # Quick is the quickstarter
 if [ $1 == 'quick' ]
 then
-  git clone https://github.com/OfficialKingJulian/Site-Quickstarter
+  git clone https://github.com/kingjuliando/Site-Quickstarter
   mv Site-Quickstarter/* .
   sudo rm -r Site-Quickstarter
   sudo rm README.md

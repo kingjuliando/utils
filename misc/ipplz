@@ -1,4 +1,9 @@
-#!/bin/bash 
+#!/bin/bash
+
+# Title:	ipplz
+# By: 		kingjuliando
+# Tag Added:	06-06-2020
+# Description:  Get current IP address
 
 # Get Current IP
   printf "Your IP is: "

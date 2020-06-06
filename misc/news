@@ -1,6 +1,10 @@
 #!/bin/bash
 
-# Gets News
+# Title:	news
+# By: 		kingjuliando
+# Tag Added:	06-06-2020
+# Description:  Gets latest BBC News headlines
+
   echo ""
   echo "  BBC News:"
   # Comes from this extremely long url: https://securitronlinux.com/bejiitaswrath/

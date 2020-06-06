@@ -1,3 +1,8 @@
 #!/bin/bash
 
+# Title:	mcbackup
+# By: 		kingjuliando
+# Tag Added:	06-06-2020
+# Description:  Used via crontab to back up the Minecraft server
+
 tar zcfP /home/julian/mcbackups/mcserver`date +%Y%m%d`.tar.gz /home/julian/mc1

@@ -1,7 +1,10 @@
 #!/bin/bash
- 
-# Installs a Bludit Instance in the Current Directory
 
+# Title:	newbludit
+# By: 		kingjuliando
+# Tag Added:	06-06-2020
+# Description:  Installs a Bludit blog instance in current dir
+ 
   if [ ! -d "$DIRECTORY" ]; then  
   # Bludit Not Found
     echo "Bludit not found; do you want to get it from GitHub? (y/n)"

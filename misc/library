@@ -1,4 +1,9 @@
-#!/bin/bash 
+#!/bin/bash
+
+# Title:	library
+# By: 		kingjuliando
+# Tag Added:	06-06-2020
+# Description:  Adds downloaded PDF documents to library folder
 
 dlfolder="${HOME}/Downloads/*.pdf"
 libfolder="${HOME}/Documents/library"
