@@ -1,17 +1,17 @@
 #!/bin/bash
 
 # Title:	add-path
-# By: 		OfficialKingJulian
+# By: 		kingjuliando
 # Tag Added:	02-02-2020
 # Description:  A more comprehensive solution to add current dir to path
 
   shelltype=$(ps -p $$ -oargs= | head -n1 | cut -d " " -f1)
   if [[ ${shelltype} == /bin/bash ]] ; then
   # Simple bash version
-    echo "  export PATH=\"\$PATH:$PWD\"" >> /home/julian/.bashrc
+    echo "  export PATH=\"\$PATH:$PWD\"" >> ${HOME}/.bashrc
     echo "$PWD added to PATH..."
     echo "Remember to 'source ~/.bashrc'!"
   else
   # Do fish path
-    /home/julian/dotfiles/tools/path/add-to-path
+    ${HOME}/Utils/path/add-to-path
   fi
