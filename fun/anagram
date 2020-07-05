@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Title:	anagram
+# By: 		kingjuliando
+# Tag Added:	05-07-2020
+# Description:  Shuffles all the characters of an input to create a clean anagram
+
+   in=$(echo "${@}" | sed -e 's/ //g')
+  out=$(echo "${in}" | fold -w1 | shuf | tr -d '\n')
+
+    echo ""
+    echo "'Random' anagram for '${@}': "
+    echo ""
+    echo "${in}"
+    echo "${out}"
+
