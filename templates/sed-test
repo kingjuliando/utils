@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo $(echo "test lol hehe" | sed -e "s/lol/kekw/")
+
